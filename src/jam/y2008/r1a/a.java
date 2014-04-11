@@ -33,12 +33,13 @@ public class a {
 
     static Scanner in;
     static PrintStream out;
-    static final String filepath = "C:\\Users\\shiryap\\Documents\\NetBeansProjects\\jam\\src\\jam\\y2008\\r1a\\";
+    static final String filepath = System.getProperty("user.dir") + "//src//jam//y2008//r1a//A-large-practice.in";
     
     public static void main(String[] args) throws FileNotFoundException
     {
-        in = new Scanner(new File(filepath + "A-large-practice.in"));
-        out = new PrintStream(new File(filepath + "A-large.out"));
+        System.out.println(filepath);
+        in = new Scanner(new File(filepath));
+        out = new PrintStream(new File(filepath + ".out"));
                 
         int T = in.nextInt();
         int t = 0;
