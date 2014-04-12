@@ -17,8 +17,8 @@ public class c {
 
     static Scanner in;
     static PrintStream out;
-    //static final String filepath = System.getProperty("user.dir") + "//src//jam//y2014//q//C-large.in";
-    static final String filepath = System.getProperty("user.dir") + "//src//jam//y2014//q//C-small-attempt1.in";
+    static final String filepath = System.getProperty("user.dir") + "//src//jam//y2014//q//C-large.in";
+    //static final String filepath = System.getProperty("user.dir") + "//src//jam//y2014//q//C-small-attempt2.in";
     //static final String filepath = System.getProperty("user.dir") + "//src//jam//y2014//q//C-test-50x50.in";
 
     static int rectX1 = 0;
@@ -55,6 +55,9 @@ public class c {
                 out.println("Impossible");
             }
         }
+        
+        in.close();
+        out.close();
 
     }
 

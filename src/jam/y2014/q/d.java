@@ -19,8 +19,8 @@ public class d {
 
     static Scanner in;
     static PrintStream out;
-    //static final String filepath = System.getProperty("user.dir") + "//src//jam//y2014//q//D-large.in";
-    static final String filepath = System.getProperty("user.dir") + "//src//jam//y2014//q//D-small-attempt0.in";
+    static final String filepath = System.getProperty("user.dir") + "//src//jam//y2014//q//D-large.in";
+    //static final String filepath = System.getProperty("user.dir") + "//src//jam//y2014//q//D-small-attempt0.in";
     //static final String filepath = System.getProperty("user.dir") + "//src//jam//y2014//q//D-sample.in";
 
     public static void main(String[] args) throws FileNotFoundException {
