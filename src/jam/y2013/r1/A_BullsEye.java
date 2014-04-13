@@ -1,17 +1,18 @@
 package jam.y2013.r1;
+
 import java.io.*;
 import java.util.*;
+
 /**
  *
  * @author Pavel.Shiryaev
  */
 public class A_BullsEye {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        String fileName = "c:\\Documents and Settings\\pavel.shiryaev\\My Documents\\NetBeansProjects\\RoundA_A_BullsEye\\src\\rounda_a_bullseye\\A-small-attempt0.in";
+    //static final String filepath = System.getProperty("user.dir") + "//src//jam//y2013//r1//A-small-practice.in";
+    static final String filepath = System.getProperty("user.dir") + "//src//jam//y2013//r1//A-large-practice.in";
+
+    public static void main(String[] args) throws FileNotFoundException, IOException {
 
         InputStream fis;
         OutputStream fos;
@@ -20,67 +21,85 @@ public class A_BullsEye {
 
         String output = "";
 
-        try {
-            fis = new FileInputStream(fileName);
-            fos = new FileOutputStream(fileName.concat(".out"));
+        fis = new FileInputStream(filepath);
+        fos = new FileOutputStream(filepath.concat(".out"));
 
-            br = new BufferedReader(new InputStreamReader(fis)); //, Charset.forName("UTF-8")));
-            bw = new BufferedWriter(new OutputStreamWriter(fos)); //, Charset.forName("UTF-8")));
+        br = new BufferedReader(new InputStreamReader(fis)); //, Charset.forName("UTF-8")));
+        bw = new BufferedWriter(new OutputStreamWriter(fos)); //, Charset.forName("UTF-8")));
 
-            String line = br.readLine();
-            int nc = Integer.parseInt(line); // The first line of the input gives the number of test cases, T. T test cases follow. 
+        String line = br.readLine();
+        int nc = Integer.parseInt(line); // The first line of the input gives the number of test cases, T. T test cases follow. 
+        Map results = new HashMap<Long, Result>(); // r, t;count
 
-            // read cases
-            for (int cc = 1; cc <= nc; cc++) {
+        // read cases
+        for (int cc = 1; cc <= nc; cc++) {
 
-                System.out.print("Case #" + cc + " out of " + nc + ": ");
+            System.out.print("Case #" + cc + " out of " + nc + ": ");
 
-                String[] rt = br.readLine().split(" ");
-                
-                long r = Long.parseLong(rt[0]); //Maria draws the first black ring around a white circle of radius r cm. 
-                long t = Long.parseLong(rt[1]); // Maria starts with t millilitres of black paint, which she will use to draw rings of thickness 1cm (one centimetre)
+            String[] rt = br.readLine().split(" ");
 
-                long count = (long) -1;
-                
-                while (t >= 0)
+            long r = Long.parseLong(rt[0]); //Maria draws the first black ring around a white circle of radius r cm. 
+            long t = Long.parseLong(rt[1]); // Maria starts with t millilitres of black paint, which she will use to draw rings of thickness 1cm (one centimetre)
+
+            long radius = r;
+            long count = (long) -1;
+            boolean saveResult = true;
+
+            Result result = (Result) results.get(radius);
+
+            if (result == null) { // new case
+                result = new Result(radius);
+                result.t = t; // original quantity
+            } else {
+                if (result.t < t) // lesser quantity - will play
                 {
-                    count++;
-                    //t -= (r + 1) * (r+1) - r*r; // (r + 1) * (r+1) - r*r = r^2 + 2r + 1 - r^2 = 2r + 1
-                    t -= r + r + 1;
-                    /*t -= r;
-                    t -=r;
-                    t -=1; 
-                    // 1. pi * 2^2 - pi * 1^2; z = 2^2 - 1^2 = 4 - 1 = 3
-                    // 2. pi * 4^2 - pi * 3^2; z = 4^2 - 3^2 = 16 - 9 = 7
-                    r++; r++;
-                    * */
-                                        
-                    r = r + 2;
-                    
-                    // t = t - (2r + 1) - (2r + 4 + 1) - (2r + 8 + 1)
+                    count = result.count - 1;
+                    t = result.tt;
+                    r = result.rr;
+                    saveResult = false;
                 }
-                
-                
-                System.out.println(count);
 
-                bw.write("Case #" + cc + ": " + count);
-                bw.newLine();
+            }
+            while (t >= 0) {
+                count++;
+                t -= r + r + 1;
+                r = r + 2;
+            }
 
+            System.out.println(count);
 
-                // line = br.readLine(); // Each test case is followed by an empty line.
+            if (saveResult) {
+                result.rr = r - 2;
+                result.tt = t + (r - 2) + (r - 2) + 1; // paint remaining
+                result.count = count;
+                results.put(radius, result);
+            }
 
-            }   // end for cc; test case
+            bw.write("Case #" + cc + ": " + count);
+            bw.newLine();
 
+            // line = br.readLine(); // Each test case is followed by an empty line.
+        }   // end for cc; test case
 
-            br.close();
-            fis.close();
-            bw.close();
-            fos.close();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-            ex.printStackTrace();
-        }
-
+        br.close();
+        fis.close();
+        bw.close();
+        fos.close();
 
     }
+}
+
+class Result {
+
+    public long count = 0;
+    public long t = 0;
+    public long tt = 0;
+    public long r = 0;
+    public long rr = 0;
+
+    Result(Long radius) {
+        r = radius;
+
+    }
+
 }
