@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class a {
+public class A {
 
     static Scanner in;
     static PrintStream out;

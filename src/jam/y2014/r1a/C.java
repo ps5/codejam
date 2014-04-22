@@ -22,7 +22,7 @@ public class C {
 
     static Scanner in;
     static PrintStream out;
-    static final String filepath = System.getProperty("user.dir") + "//src//jam//y2014//r1a//A-sample.in";
+    static final String filepath = System.getProperty("user.dir") + "//src//jam//y2014//r1a//C-sample.in";
     
     public static void main(String[] args) throws FileNotFoundException
     {
