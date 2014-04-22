@@ -11,7 +11,7 @@ package jam.y2013.r1;
 import java.io.*;
 import java.util.*;
 
-public class b {
+public class B {
 
     static Scanner in;
     static PrintStream out;
