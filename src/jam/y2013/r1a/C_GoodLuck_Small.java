@@ -5,6 +5,7 @@ package jam.y2013.r1a;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Collections;
 import java.util.TreeSet;
@@ -79,8 +80,7 @@ public class C_GoodLuck_Small {
                 ans = "222";  // no answer
             }
             // print numbers
-            for (int k=0; k < kk.length; k++)
-            {System.out.print(kk[k] + " ");} System.out.println(": " + ans);
+            System.out.print(Arrays.toString(kk)); System.out.println(": " + ans);
             out.println(ans);
         }
     }
