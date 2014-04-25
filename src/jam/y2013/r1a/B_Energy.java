@@ -10,6 +10,7 @@ package jam.y2013.r1a;
  */
 import java.io.*;
 import java.util.*;
+import java.math.*;
 
 public class B_Energy {
 
