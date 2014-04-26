@@ -34,22 +34,23 @@ public class C {
         int t = 0;
         while (t++ < T) {
           int N = in.nextInt();
-          /*
-          ArrayList av1 = new ArrayList<Long>(N);
-          readVector(av1, N);
-          Collections.sort(av1);
-          
-          ArrayList av2 = new ArrayList<Long>(N);
-          readVector(av2, N);
-          Collections.sort(av2, Collections.reverseOrder());
-          
-          long Y = 0;
-          for (int i = 0; i< N; i++)
+        
+          int L = 0; int R = 0; int E = 0;
+          for (int i = 0; i < N; i++)
           {
-              Y += (Long)av1.get(i) * (Long)av2.get(i);
+              int x = in.nextInt();
+              if (x == i) E++;
+              else {if (x < i) L++; else R++;}
           }
-                  */
           
+          System.out.print("Case #" + t + "   E = " + E +  " L = " + L + "  R = " + R + "   ");
+          if (E > 1) 
+              System.out.println("BAD");
+          else
+          {
+              if (E <= 1 || Math.abs(L - R) * 10 / N > 1)
+              System.out.println("GOOD");
+          }
           //out.println("Case #" + t + ": " + Y);
       }
        

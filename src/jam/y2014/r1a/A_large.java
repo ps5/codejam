@@ -16,11 +16,11 @@ import java.util.Collections;
 import java.util.Scanner;
 import java.util.Arrays;
 
-public class A {
+public class A_large {
 
     static Scanner in;
     static PrintStream out;
-    static final String filepath = System.getProperty("user.dir") + "//src//jam//y2014//r1a//A-small-practice.in";
+    static final String filepath = System.getProperty("user.dir") + "//src//jam//y2014//r1a//A-large-practice.in";
 
     public static void main(String[] args) throws FileNotFoundException {
         System.out.println(filepath);
@@ -34,37 +34,41 @@ public class A {
             int L = in.nextInt();
             in.nextLine();
 
-            int ll = (int) Math.pow(2, L);
-            System.out.println("Case #" + t + "  N = " + N + "  L = " + L + "   LL = " + ll);
-            int f1[] = new int[N];
-            int f2[] = new int[N];
+            System.out.println("Case #" + t + "  N = " + N + "  L = " + L);
+            long f1[] = new long[N];
+            long f2[] = new long[N];
             readFlow(f1);
             readFlow(f2);
+            //display(f1);
+            //display(f2);
 
             Arrays.sort(f1);
             Arrays.sort(f2);
-            System.out.println(Arrays.toString(f1));
-            //System.out.println(Arrays.toString(f2));
-            //System.out.print(0+ "  "); display(f1);
-            int sol = -1;
-            for (int l = 0; l < ll; l++) {
-                int f[] = new int[N];
-                for (int i = 0; i < f1.length; i++) {
-                    f[i] = f1[i] ^ l;
+
+            long sol = -1;
+            for (int i = 0; i < f1.length; i++) {
+                for (int j = 0; j < f2.length; j++) {
+                    long k = f1[i] ^ f2[j]; // key
+                    long f[] = new long[N];
+                    for (int ii = 0; ii < f1.length; ii++) {
+                        f[ii] = f1[ii] ^ k;
+                    }
+                    Arrays.sort(f);
+                    if (Arrays.equals(f2, f)) {
+                        if (Long.bitCount(k) < Long.bitCount(sol)) {
+                            sol = k;
+                        }
+                        //break;
+                    }
+
                 }
-
-                //System.out.print(l+ "  "); display(f);
-                Arrays.sort(f);
-
-                if (Arrays.equals(f, f2)) {
-                    //sol = l;
-                    //break;
-                    if (Long.bitCount(l) < Long.bitCount(sol))
-                        sol = l;
+                if (sol != -1) {
+                    break;
                 }
             }
 
             out.print("Case #" + t + ": ");
+
             if (sol == -1) {
                 out.println("NOT POSSIBLE");
                 System.out.println("NOT POSSIBLE");
@@ -80,20 +84,20 @@ public class A {
 
     }
 
-    public static void display(int b[]) {
-        for (int i : b) {
-            System.out.print(Integer.toBinaryString(i) + " ");
+    public static void display(long b[]) {
+        for (long i : b) {
+            System.out.print(Long.toBinaryString(i) + " ");
         }
 
         System.out.println();
     }
 
-    public static void readFlow(int n[]) {
+    public static void readFlow(long n[]) {
         String s[] = in.nextLine().split(" ");
         for (int i = 0; i < s.length; i++) {
             String ss = s[i];
             n[i] = 0;
-            int r = 1;
+            long r = 1;
             for (int j = ss.length() - 1; j >= 0; j--) {
                 n[i] += ss.charAt(j) == '1' ? r : 0;
                 r *= 2;
