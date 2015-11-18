@@ -1,7 +1,6 @@
 # README #
 
-This is a working project for participating in Google Code Jam competitions (code.google.com/codejam/).
-It contains actual submissions for 2013, 2014 contests, and practice code for earlier contest years.
+This repository contains actual code submissions for the 2013, 2014 Google Code Jam contests (code.google.com/codejam/), and some earlier years I participated in, entirely for the fun and love of sports programming. 
 
 ### CODEJAM ###
 
