@@ -4,5 +4,5 @@ This repository contains actual code submissions for the 2013, 2014 Google Code 
 
 ### CODEJAM ###
 
-*  Language: Java
-*  IDE: Netbeans
+*  Language: Java, Python
+
